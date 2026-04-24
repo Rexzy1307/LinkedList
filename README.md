@@ -1,0 +1,2 @@
+# LinkedList
+Tugas Struktur Data
