@@ -2,49 +2,62 @@
 using namespace std;
 
 
+--dirubah ke double linked list dari tugas kemarin 
 struct Node {
 	int data;
 	struct Node *next;
+	struct Node *prev;
 };
 
-void traverse(struct Node *temp)
+void traverseMaju(struct Node *temp)
 {
 	int i = 0;
-	while(temp != NULL){ 
-		cout << "data ke" << i + 1<< ": ";
-		cout << temp -> data;
-		temp = temp -> next;
-		cout << endl;
-		i++;
+	if (temp != NULL) {
+	    cout << "--- Traversal Maju (Forward) ---" << endl;
+		do {
+			cout << "data ke " << i + 1 << ": " << temp->data << endl;
+			temp = temp->next;
+			i++;
+		} while(temp != NULL);
 	}
-	cout << "Jumlah data: "<< i << endl;
+	cout << "Jumlah data: "<< i << endl << endl;
+};
+
+void traverseMundur(struct Node *temp)
+{
+	int i = 0;
+	if (temp != NULL) {
+	    cout << "--- Traversal Mundur (Backward) ---" << endl;
+		do {
+			cout << "data mundur ke " << i + 1 << ": " << temp->data << endl;
+			temp = temp->prev;
+			i++;
+		} while(temp != NULL);
+	}
+	cout << "Jumlah data: "<< i << endl << endl;
 };
 
 
 int main(){
 	
-	Node *node1 = NULL;
-	Node *node2 = NULL;
-	Node *node3 = NULL;
-	Node *node4 = NULL;
-	Node *node5 = NULL;
+	Node *node1 = new Node;
+	Node *node2 = new Node;
+	Node *node3 = new Node;
 	
-	node1 = new Node;
-	node2 = new Node;
-	node3 = new Node;
-	node4 = new Node;
-	node5 = new Node;
+	node1->data = 10;
+	node1->prev = NULL;
+	node1->next = node2;
 	
-	node1-> data = 10;
-	node1-> next = node2;
+	node2->data = 20;
+	node2->prev = node1;
+	node2->next = node3;
 	
-	node2-> data = 20;
-	node2-> next = node3;
+	node3->data = 30;
+	node3->prev = node2;
+	node3->next = NULL;
 	
-	node3-> data = 30;
-	node3-> next = NULL;
-	
-	cout << "data linked list: " << endl;
-	traverse(node1);
+	traverseMaju(node1);
+	traverseMundur(node3);
+    
+    return 0;
 }
-
